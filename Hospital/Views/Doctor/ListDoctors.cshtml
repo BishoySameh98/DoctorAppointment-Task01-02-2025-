@@ -1,0 +1,22 @@
+﻿@model List<Hospital.Models.Doctor>
+
+<h1>Book Appointment</h1>
+<div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    @foreach (var doctor in Model)
+    {
+        <div style="border: 1px solid #ccc; padding: 10px; text-align: center; width: 30%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+            <!-- Load image from wwwroot/images folder using Url.Content -->
+            <img src="@Url.Content("~/images/" + doctor.Img)" alt="@doctor.Name"
+                 style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"
+                 onerror="this.onerror=null; this.src='@Url.Content("~/images/default-placeholder.png")';" />
+
+            <h2>@doctor.Name</h2>
+            <p>Specialization: @doctor.Specialization</p>
+            <!-- Styled anchor that looks like a button -->
+            <a asp-controller="Doctor" asp-action="BookAppointment" asp-route-id="@doctor.Id"
+               style="display: inline-block; padding: 10px 20px; background-color: blue; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">
+                Book Appointment
+            </a>
+        </div>
+    }
+</div>
